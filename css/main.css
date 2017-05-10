@@ -25,7 +25,7 @@ h6 {
 
 h1{
   font-size: 36px;
-  color:#fff;
+  color:yellow;
 }
 
 h2{
@@ -381,7 +381,7 @@ input.search-form:hover {
 }
 
 #main-slider .carousel h2 {
-  color: #fff;
+  color: yellow;
 }
 
 #main-slider .carousel .btn-slide {

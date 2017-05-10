@@ -3,7 +3,7 @@ jQuery(function($) {'use strict',
 	//#main-slider
 	$(function(){
 		$('#main-slider.carousel').carousel({
-			interval: 8000
+			interval: 2000
 		});
 	});
 
@@ -50,7 +50,7 @@ jQuery(function($) {'use strict',
 				form.prepend( form_status.html('<p><i class="fa fa-spinner fa-spin"></i> Email is sending...</p>').fadeIn() );
 			}
 		}).done(function(data){
-			form_status.html('<p class="text-success">' + data.message + '</p>').delay(3000).fadeOut();
+			form_status.html('<p class="text-success">' + data.message + '</p>').delay(500).fadeOut();
 		});
 	});
 
@@ -60,7 +60,7 @@ jQuery(function($) {'use strict',
 		event.preventDefault();
 		$('html, body').animate({
 			scrollTop: $("body").offset().top
-		}, 500);
+		}, 100);
 	});	
 
 	//Pretty Photo
