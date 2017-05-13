@@ -72,10 +72,112 @@
       #latlng {
         width: 225px;
       }
+
+      body {
+  background: #f39c12;
+}
+.center-on-page {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+h1 {
+  text-align: center;
+}
+/* Reset Select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  border: 0 !important;
+  background: #2c3e50;
+  background-image: none;
+}
+/* Custom Select */
+.select {
+  position: relative;
+  display: block;
+  width: 20em;
+  height: 3em;
+  line-height: 3;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+select {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0 0 0 .5em;
+  color: #fff;
+  cursor: pointer;
+}
+select::-ms-expand {
+  display: none;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+}
+.select::after {
+  -webkit-transition: .25s all ease;
+  -o-transition: .25s all ease;
+  transition: .25s all ease;
+}
     </style>
   </head>
   <body>
-    <div id="floating-panel">
+    <div id="floating-panel" >
+
+         <div class="select" >
+            <select name="slct" id="slct">
+              <option value="">الرجاء اختار مكان اللوحة</option>
+               <option value = "32.868806, 13.288083">نهاية السريع قرب كوبري تلبيغة .الجديدة.</option>
+               <option value = "32.856222, 13.118417">مثلث  الحى الاسلامى فى اتجاه تاجوراء..</option>
+               <option value = "32.855056, 13.174028">بعد كوبري ابو سليم قبل المستشفى في اتجاه تاجوراء </option>
+               <option value = "32.866222, 13.227972"> السريع كوبري زناتة في اتجاه تاجوراء  .</option>
+
+
+
+
+               <option value = "32.869222, 13.245056"> مثلث كوبري سوق الجمعة في اتجاه جنزور .</option>
+
+
+              
+
+
+               <option value = "32.849528, 13.453917"> مدخل  طرابلس الشرقي مصيف الطاقة</option>
+
+
+               <option value = "32.894667, 13.381833"> طريق الشط بجوار الفنار </option>
+
+
+               <option value = "32.893778, 13.347000">طريق الشط قبل جزيرة لأندلسي</option>
+
+
+
+            </select>
+         </div>
+
+         <br>
+
+<!-- 
+
         <select id="latlng">
                <option value = "32.868806, 13.288083">نهاية السريع قرب كوبري تلبيغة .الجديدة.</option>
                <option value = "32.856222, 13.118417">مثلث  الحى الاسلامى فى اتجاه تاجوراء..</option>
@@ -101,7 +203,7 @@
 
 
 
-             </select>
+             </select> -->
      
       <input id="submit" type="button" value="  البحث عن اللوحات">
     </div>
@@ -122,7 +224,7 @@
       }
 
       function geocodeLatLng(geocoder, map, infowindow) {
-        var input = document.getElementById('latlng').value;
+        var input = document.getElementById('slct').value;
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
         geocoder.geocode({'location': latlng}, function(results, status) {
@@ -139,7 +241,8 @@
               window.alert('No results found');
             }
           } else {
-            window.alert('Geocoder failed due to: ' + status);
+           // window.alert('Geocoder failed due to: ' + status);
+            window.alert('عقوا الرجاء اختيار موقع اللوحة');
           }
         });
       }
