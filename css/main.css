@@ -5,11 +5,11 @@
 *******Typography******
 **************************/
 
-body {
+.homepage {
 
   width: 88.667em;
   margin: 1em auto 1em auto;
-  background: #b3b3b3;
+  background:#e6e6e6;
   font-family: 'Open Sans', sans-serif;
   color:#4e4e4e;
   line-height: 22px;
