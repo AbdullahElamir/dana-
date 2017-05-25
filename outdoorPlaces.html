@@ -147,29 +147,12 @@ select::-ms-expand {
          <div class="select" >
             <select name="slct" id="slct">
               <option value="">الرجاء اختار مكان اللوحة</option>
-               <option value = "32.868806, 13.288083">نهاية السريع قرب كوبري تلبيغة .الجديدة.</option>
-               <option value = "32.856222, 13.118417">مثلث  الحى الاسلامى فى اتجاه تاجوراء..</option>
-               <option value = "32.855056, 13.174028">بعد كوبري ابو سليم قبل المستشفى في اتجاه تاجوراء </option>
-               <option value = "32.866222, 13.227972"> السريع كوبري زناتة في اتجاه تاجوراء  .</option>
-
-
-
-
-               <option value = "32.869222, 13.245056"> مثلث كوبري سوق الجمعة في اتجاه جنزور .</option>
-
-
-              
-
-
-               <option value = "32.849528, 13.453917"> مدخل  طرابلس الشرقي مصيف الطاقة</option>
-
-
-               <option value = "32.894667, 13.381833"> طريق الشط بجوار الفنار </option>
-
-
-               <option value = "32.893778, 13.347000">طريق الشط قبل جزيرة لأندلسي</option>
-
-
+               <option value = "1">طرابلــس</option>
+               <option value = "2">جفــارة</option>
+               <option value = "3">صرمان</option>
+               <option value = "4">الزاوية</option>
+               
+         
 
             </select>
          </div>
@@ -206,46 +189,119 @@ select::-ms-expand {
              </select> -->
      
       <input id="submit" type="button" value="  البحث عن اللوحات">
+       <input id="Clear" type="button" value="بحث جديد">
+
     </div>
     <div id="map"></div>
     <script>
+     var geocoder ;
+        var infowindow ;
+        var map;
       function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
+         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 8,
-          center: {lat: 32.808368, lng: 13.155532}
+          center: {lat: 32.808368, lng: 13.155532},
 
+          //mapTypeId:google.maps.MapTypeId.HYBRID
         });
-        var geocoder = new google.maps.Geocoder;
-        var infowindow = new google.maps.InfoWindow;
+        geocoder = new google.maps.Geocoder;
+         infowindow = new google.maps.InfoWindow;
+
+        document.getElementById('Clear').addEventListener('click', function() {
+           map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: {lat: 32.808368, lng: 13.155532}
+           // mapTypeId:google.maps.MapTypeId.HYBRID
+          });
+             geocoder = new google.maps.Geocoder;
+             infowindow = new google.maps.InfoWindow;
+        });
 
         document.getElementById('submit').addEventListener('click', function() {
-          geocodeLatLng(geocoder, map, infowindow);
+          
+        // for Tripoli 
+        if (document.getElementById('slct').value == 1){
+
+          geocodeLatLng(geocoder, map, infowindow,"32.868806, 13.288083",10,'نهاية السريع قرب كوبري تلبيغة .الجديدة.');
+          geocodeLatLng(geocoder, map, infowindow,"32.856222, 13.118417",10,'مثلث  الحى الاسلامى فى اتجاه تاجوراء..');
+          geocodeLatLng(geocoder, map, infowindow,"32.855056, 13.174028",10,'بعد كوبري ابو سليم قبل المستشفى في اتجاه تاجوراء ');
+          geocodeLatLng(geocoder, map, infowindow,"32.866222, 13.227972",10,' السريع كوبري زناتة في اتجاه تاجوراء  .');
+          geocodeLatLng(geocoder, map, infowindow,"32.869222, 13.245056",10,'مثلث كوبري سوق الجمعة في اتجاه جنزور');
+          geocodeLatLng(geocoder, map, infowindow,"32.893778, 13.347000",10,' قبل مدخل ابوسليم فى اتجاه جنزور');
+          geocodeLatLng(geocoder, map, infowindow,"32.849528, 13.453917",10,'مدخل  طرابلس الشرقي مصيف الطاقة');
+          geocodeLatLng(geocoder, map, infowindow,"32.894667, 13.381833",10,' طريق الشط بجوار الفنار ');  
+
+
+          // for jafar 
+        } else if(document.getElementById('slct').value == 2){
+          
+          geocodeLatLng(geocoder, map, infowindow,"32.838167, 13.041278",10,'شارع سليمان خاطر مثلث القصيبة');  
+          geocodeLatLng(geocoder, map, infowindow,"32.827750, 13.005556",10,'جسر المعاقين ');  
+          
+          // for sorman
+        } else if(document.getElementById('slct').value == 3){
+          geocodeLatLng(geocoder, map, infowindow,"32.755417, 12.574417",11,'جزيرة الدوران الرئيسية مدينة صرمان .');  
+          geocodeLatLng(geocoder, map, infowindow,"32.758694, 12.568361",11,'جزيرة الدوران الرئيسية مدينة صرمان .');  
+          geocodeLatLng(geocoder, map, infowindow,"32.760806, 12.568861",11,'الإشارة الضوئية لمدينة صرمان . الطريق الساحلي');  
+
+          // for zawia 
+        } else if(document.getElementById('slct').value ==4) {
+           geocodeLatLng(geocoder, map, infowindow,"32.768944, 12.727806",13,'شارع عمر المختار بمقابل وزارة التعليم ');  
+          geocodeLatLng(geocoder, map, infowindow,"32.755861, 12.734222",13,'شارع صلاح الدين . بجوار إذاعة الزاوية المحلية '); 
+
+
+          geocodeLatLng(geocoder, map, infowindow,"32.772028, 12.724806",13,'شارع عمر المختار بجوار مدرسة ضي الهلال ');  
+
+
+           geocodeLatLng(geocoder, map, infowindow,"32.751667, 12.735806",13,'شارع القرظابية . بجوار الحي السكني ');  
+
+          geocodeLatLng(geocoder, map, infowindow,"32.761028, 12.736361",13,'تقاطع شارع عمر المختار مع شارع صلاح الدين ');  
+          geocodeLatLng(geocoder, map, infowindow,"32.753306, 12.720444",13,'منطقة الزهيوي . بجوار العمارات السكنية ');  
+          
+
+
+        }
+          
+
         });
       }
 
-      function geocodeLatLng(geocoder, map, infowindow) {
-        var input = document.getElementById('slct').value;
+      function geocodeLatLng(geocoder, map, infowindow,stringLat,zoomm,msg) {
+      
+        //alert(stringLat);
+        var input = stringLat;
         var latlngStr = input.split(',', 2);
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        geocoder.geocode({'location': latlng}, function(results, status) {
-          if (status === 'OK') {
+        geocoder.geocode({'location': latlng}, function(results, status) {   
+          if (status === 'OK') {    
             if (results[1]) {
-              map.setZoom(15);
+              map.setZoom(zoomm);
               var marker = new google.maps.Marker({
                 position: latlng,
                 map: map
               });
-              infowindow.setContent(results[1].formatted_address);
+              //infowindow.setContent(results[1].formatted_address);
+              infowindow = new google.maps.InfoWindow({
+                                content: msg
+                            });
               infowindow.open(map, marker);
+     
+
             } else {
               window.alert('No results found');
             }
           } else {
-           // window.alert('Geocoder failed due to: ' + status);
-            window.alert('عقوا الرجاء اختيار موقع اللوحة');
+            //window.alert('Geocoder failed due to: ' + status);
+             setTimeout(function(){
+               geocodeLatLng(geocoder, map, infowindow,stringLat,zoomm,msg);
+          }, 1000); 
+
+           
           }
         });
       }
+
+    
     </script>
     <script async defer
      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUOjP4p07TUUPyf_27boPVlc3wPKtMonY&callback=initMap">
